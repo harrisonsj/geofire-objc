@@ -103,7 +103,7 @@
 
 - (BOOL)locationIsInQuery:(CLLocation *)location
 {
-    if(self.radius >= 5000){
+    if(self.radius >= 4000){
         return YES;
     }else{
         return [location distanceFromLocation:self.centerLocation] <= (self.radius * 1000);
@@ -112,7 +112,7 @@
 
 - (NSSet *)queriesForCurrentCriteria
 {
-    if(self.radius >= 5000){
+    if(self.radius >= 4000){
         return [NSSet  setWithObject:[[GFGeoHashQuery alloc] initWithStartValue:@"0" endValue:@"zzzzzzzzzzzzzzzzzzzzzz\uf8ff"]];
     }else{
         return [GFGeoHashQuery queriesForLocation:self.centerLocation.coordinate radius:(self.radius * 1000)];
