@@ -103,7 +103,11 @@
 
 - (BOOL)locationIsInQuery:(CLLocation *)location
 {
-    return [location distanceFromLocation:self.centerLocation] <= (self.radius * 1000);
+    if(self.radius >= 4000){
+        return YES;
+    }else{
+        return [location distanceFromLocation:self.centerLocation] <= (self.radius * 1000);
+    }
 }
 
 - (NSSet *)queriesForCurrentCriteria
