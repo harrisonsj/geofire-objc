@@ -108,7 +108,11 @@
 
 - (NSSet *)queriesForCurrentCriteria
 {
-    return [GFGeoHashQuery queriesForLocation:self.centerLocation.coordinate radius:(self.radius * 1000)];
+    if(self.radius >= 4000){
+        return [[GFGeoHashQuery alloc] initWithStartValue:@"0" endValue:@"zzzzzzzzzzzzzzzzzzzzzz\uf8ff"];
+    }else{
+        return [GFGeoHashQuery queriesForLocation:self.centerLocation.coordinate radius:(self.radius * 1000)];
+    }
 }
 
 @end
