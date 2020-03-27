@@ -20,7 +20,11 @@
 + (NSSet *)queriesForLocation:(CLLocationCoordinate2D)location radius:(double)radius;
 + (NSSet *)queriesForRegion:(MKCoordinateRegion)region;
 
+<<<<<<< HEAD
+- (id)initWithStartValue:(NSString *)startValue endValue:(NSString *)endValue
+=======
 - (id)initWithStartValue:(NSString *)startValue endValue:(NSString *)endValue;
+>>>>>>> 3.0.0
 
 - (BOOL)containsGeoHash:(GFGeoHash *)hash;
 
