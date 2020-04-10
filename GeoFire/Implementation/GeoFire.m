@@ -27,6 +27,21 @@ enum {
 
 @implementation GeoFire
 
++ (CLLocationCoordinate2D)validateCoordinate: (CLLocationCoordinate2D)coordinate{
+    CLLocationDegrees latitude = MIN(90, MAX(-90, coordinate.latitude));
+    CLLocationDegrees longitude = MIN(180, MAX(-180, coordinate.longitude));
+    
+    return CLLocationCoordinate2DMake(latitude, longitude);
+}
+
++ (CLLocation *)validateLocation: (CLLocation *)location
+{
+    CLLocationDegrees latitude = MIN(90, MAX(-90, location.coordinate.latitude));
+    CLLocationDegrees longitude = MIN(180, MAX(-180, location.coordinate.longitude));
+    
+    return [[CLLocation alloc] initWithLatitude:latitude longitude:longitude];
+}
+
 - (id)init
 {
     [NSException raise:NSGenericException
@@ -57,11 +72,14 @@ enum {
              forKey:(NSString *)key
 withCompletionBlock:(GFCompletionBlock)block
 {
+    [GeoFire validateLocation:location];
+    
     if (!CLLocationCoordinate2DIsValid(location.coordinate)) {
         [NSException raise:NSInvalidArgumentException
                     format:@"Not a valid coordinate: [%f, %f]",
          location.coordinate.latitude, location.coordinate.longitude];
     }
+    
     [self setLocationValue:location
                     forKey:key
                  withBlock:block];

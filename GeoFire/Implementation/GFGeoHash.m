@@ -7,6 +7,7 @@
 //
 
 #import "GFGeoHash.h"
+#import "GeoFire.h"
 
 #import "GFBase32Utils.h"
 
@@ -34,6 +35,8 @@
             [NSException raise:NSInvalidArgumentException format:@"Precision must be less than %d!",
              (GF_MAX_PRECISION+1)];
         }
+        //[GeoFire validateLocation:location];
+        [GeoFire validateCoordinate: location];
         if (!CLLocationCoordinate2DIsValid(location)) {
             [NSException raise:NSInvalidArgumentException
                         format:@"Not a valid geo location: [%f,%f]", location.latitude, location.longitude];

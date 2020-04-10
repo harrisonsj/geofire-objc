@@ -58,6 +58,9 @@ typedef void (^GFCallbackBlock) (CLLocation * _Nullable location, NSError * _Nul
 
 /** @name Creating new GeoFire objects */
 
++ (CLLocationCoordinate2D)validateCoordinate:(CLLocationCoordinate2D)coordinate;
++ (CLLocation *)validateLocation:(CLLocation *)location;
+
 /**
  * Initializes a new GeoFire instance at the given Firebase location.
  * @param firebase The Firebase location to attach this GeoFire instance to
