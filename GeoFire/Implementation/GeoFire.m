@@ -72,7 +72,7 @@ enum {
              forKey:(NSString *)key
 withCompletionBlock:(GFCompletionBlock)block
 {
-    [GeoFire validateLocation:location];
+    location = [GeoFire validateLocation:location];
     
     if (!CLLocationCoordinate2DIsValid(location.coordinate)) {
         [NSException raise:NSInvalidArgumentException

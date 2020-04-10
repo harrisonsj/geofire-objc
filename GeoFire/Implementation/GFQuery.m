@@ -56,7 +56,7 @@
 {
     self = [super initWithGeoFire:geoFire];
     if (self != nil) {
-        [GeoFire validateLocation:location];
+        location = [GeoFire validateLocation:location];
         if (!CLLocationCoordinate2DIsValid(location.coordinate)) {
             [NSException raise:NSInvalidArgumentException
                         format:@"Not a valid geo location: [%f,%f]",
@@ -71,7 +71,7 @@
 - (void)setCenter:(CLLocation *)center
 {
     @synchronized(self) {
-        [GeoFire validateLocation:center];
+        center = [GeoFire validateLocation:center];
         if (!CLLocationCoordinate2DIsValid(center.coordinate)) {
             [NSException raise:NSInvalidArgumentException
                         format:@"Not a valid geo location: [%f,%f]",
